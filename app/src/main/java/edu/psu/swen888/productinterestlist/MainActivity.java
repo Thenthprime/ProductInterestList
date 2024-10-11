@@ -1,4 +1,4 @@
-package edu.psu.swen888.productinterestlist
+package edu.psu.swen888.productinterestlist;
 
 
 
@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<Product> products = new ArrayList<>();
+    private ArrayList<ProductModel> products = new ArrayList<>();
     private RecyclerView recyclerView;
 
 

@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
-    private ArrayList<Product> productsList;
+    private ArrayList<ProductModel> productsList;
 
-    public RecyclerAdapter(ArrayList<Product> productsList){
+    public RecyclerAdapter(ArrayList<ProductModel> productsList){
         this.productsList = productsList;
     }
 
