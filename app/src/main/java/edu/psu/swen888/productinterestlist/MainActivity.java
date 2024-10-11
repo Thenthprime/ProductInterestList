@@ -19,8 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<ProductModel> products = new ArrayList<>();
+    private ArrayList<ProductModel> allProducts = new ArrayList<>();
     private RecyclerView recyclerView;
+    private ArrayList<ProductModel> mySelectedProducts;
+
 
 
     @Override
@@ -28,23 +30,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //check permissions
-        //fetch products
-        fetchProducts();
+        //fetch all products
+        fetchAllProducts();
+        //display allProducts through RecyclerAdapter
+        RecyclerAdapter adapter = new RecyclerAdapter(allProducts);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
         recyclerView = findViewById(R.id.products_list);
+        //fetch selected products
+        fetchMySelectedProducts();
+        //send mySelectedProducts to second activity with explicit intent
+    }
+
+    private void fetchAllProducts(){
+
+        //populate allProducts with products in the SQLite database
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+
+        //create content resolver
+        //iterate with cursor
+        //update adapter
 
     }
-private void fetchProducts(){
-    RecyclerAdapter adapter = new RecyclerAdapter(products);
-    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-    recyclerView.setLayoutManager(layoutManager);
-    recyclerView.setItemAnimator(new DefaultItemAnimator());
-    recyclerView.setAdapter(adapter);
 
-    //create content resolver
-    //iterate with cursor
-    //update adapter
-
-}
+    private void fetchMySelectedProducts(){
+            //if true (checked), add to mySelectedProducts ArrayList
+    }
 
 
 }
