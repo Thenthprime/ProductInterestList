@@ -25,6 +25,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         private TextView productSeller;
         private TextView productPrice;
         private ImageView productImage;
+
         public MyViewHolder(final View view){
             super(view);
             productID = view.findViewById(R.id.textview_product_id);
@@ -44,13 +45,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.MyViewHolder holder, int position) {
-        holder.productID.setText(productsList.get(position).getId());
+        String productId = Integer.toString(productsList.get(position).getId());
+        holder.productID.setText(productId);
         holder.productName.setText(productsList.get(position).getName());
         holder.productDescription.setText(productsList.get(position).getDescription());
         holder.productSeller.setText(productsList.get(position).getSeller());
         holder.productPrice.setText(productsList.get(position).getPrice());
-        holder.productImage.setImageResource(productsList.get(position).getImage());
-
+        //holder.productImage.setImageResource(productsList.get(position).getImage());
     }
 
     @Override
