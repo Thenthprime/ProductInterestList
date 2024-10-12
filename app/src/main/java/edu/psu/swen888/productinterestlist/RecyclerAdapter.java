@@ -1,13 +1,11 @@
 package edu.psu.swen888.productinterestlist;
 
-import android.content.ClipData;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,22 +14,21 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
     private ArrayList<ProductModel> productsList;
-    public static ArrayList<ProductModel> selectedProductsList;
-    private CheckBox checkBox;
+    public static ArrayList<ProductModel> selectedProductsList = new ArrayList<>();
+
 
     public RecyclerAdapter(ArrayList<ProductModel> productsList){
         this.productsList = productsList;
-        this.selectedProductsList = selectedProductsList;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        private CheckBox checkBox;
         private TextView productID;
         private TextView productName;
         private TextView productDescription;
         private TextView productSeller;
         private TextView productPrice;
         private ImageView productImage;
+        private CheckBox checkBox;
 
         public MyViewHolder(final View view){
             super(view);
@@ -46,20 +43,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     }
     @NonNull
     @Override
-    public RecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item, parent, false);
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerAdapter.MyViewHolder holder, int position) {
-        String productId = Integer.toString(productsList.get(position).getId());
-        holder.productID.setText(productId);
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        String productID = Integer.toString(productsList.get(position).getId());
         holder.productName.setText(productsList.get(position).getName());
         holder.productDescription.setText(productsList.get(position).getDescription());
         holder.productSeller.setText(productsList.get(position).getSeller());
         holder.productPrice.setText(productsList.get(position).getPrice());
         //holder.productImage.setImageResource(productsList.get(position).getImage());
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ProductModel selectedItem = productsList.get(holder.getAbsoluteAdapterPosition());
+                if(holder.checkBox.isChecked()) {
+                    selectedProductsList.add(selectedItem);
+                }
+
+        }
+    });
     }
 
     @Override
@@ -69,5 +75,4 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         }
         return 0;
     }
-
 }

@@ -33,8 +33,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    //i actually don't think this practice activity requires the addOne method the database is prepopulated
-    //TODO: figure out how to prepopulate the database
+    //requried to add some initial data to the database
     public boolean addOne(ProductModel productModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -68,7 +67,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String productSeller = cursor.getString(3);
                 String productPrice = cursor.getString(4);
 
-                ProductModel newProduct = new ProductModel(productID, productName, productDescription, productSeller, productPrice, 0);
+                ProductModel newProduct = new ProductModel(productID, productName, productDescription, productSeller, productPrice, 0, false);
                 returnList.add(newProduct);
             }
             while (cursor.moveToNext());
@@ -76,8 +75,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         else {
             //failure do nothing
-            ProductModel fakeProductModel = new ProductModel(1, "FakeProduct", "FakeDescription", "FakeSeller", "$10.99", 0);
-            returnList.add(fakeProductModel);
         }
         cursor.close();
         db.close();
