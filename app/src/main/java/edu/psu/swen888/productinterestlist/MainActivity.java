@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,11 +31,16 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onShowMyProductsClicked(View view){
         ArrayList<ProductModel> selectedProductsList = RecyclerAdapter.selectedProductsList;
-        Intent intent = new Intent(MainActivity.this, SelectedProductsActivity.class);
-        Bundle args = new Bundle();
-        args.putSerializable("ARRAYLIST", (Serializable) selectedProductsList);
-        intent.putExtra("BUNDLE",args);
-        startActivity(intent);
+        if(selectedProductsList.size()<3){
+            Toast.makeText(MainActivity.this, "Please Select At Least 3 Items", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent intent = new Intent(MainActivity.this, SelectedProductsActivity.class);
+            Bundle args = new Bundle();
+            args.putSerializable("ARRAYLIST", (Serializable) selectedProductsList);
+            intent.putExtra("BUNDLE", args);
+            startActivity(intent);
+        }
     }
 
     private void fetchAllProducts() {

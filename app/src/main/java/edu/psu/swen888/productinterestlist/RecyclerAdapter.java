@@ -51,6 +51,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String productID = Integer.toString(productsList.get(position).getId());
+        holder.productID.setText(productID);
         holder.productName.setText(productsList.get(position).getName());
         holder.productDescription.setText(productsList.get(position).getDescription());
         holder.productSeller.setText(productsList.get(position).getSeller());
@@ -62,6 +63,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                 ProductModel selectedItem = productsList.get(holder.getAbsoluteAdapterPosition());
                 if(holder.checkBox.isChecked()) {
                     selectedProductsList.add(selectedItem);
+                }
+                else{
+                    if(selectedProductsList.contains(selectedItem)){
+                        selectedProductsList.remove(selectedItem);
+                    }
                 }
             }
         });
