@@ -1,11 +1,14 @@
 package edu.psu.swen888.productinterestlist;
 
+import android.content.ClipData;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,12 +16,16 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
     private ArrayList<ProductModel> productsList;
+    public static ArrayList<ProductModel> selectedProductsList;
+    private CheckBox checkBox;
 
     public RecyclerAdapter(ArrayList<ProductModel> productsList){
         this.productsList = productsList;
+        this.selectedProductsList = selectedProductsList;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
+        private CheckBox checkBox;
         private TextView productID;
         private TextView productName;
         private TextView productDescription;
@@ -34,6 +41,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             productSeller = view.findViewById(R.id.textview_product_seller);
             productPrice = view.findViewById(R.id.textview_product_price);
             productImage = view.findViewById(R.id.product_image);
+            checkBox = view.findViewById(R.id.checkBox);
         }
     }
     @NonNull
@@ -61,4 +69,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         }
         return 0;
     }
+
 }

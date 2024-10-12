@@ -3,13 +3,16 @@ package edu.psu.swen888.productinterestlist;
 
 
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.Manifest;
+import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -22,7 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private static CheckBox checkBox;
-    public static ArrayList<ProductModel> mySelectedProducts;
+    private ArrayList<ProductModel> allProducts;
 
 
 
@@ -35,8 +38,13 @@ public class MainActivity extends AppCompatActivity {
         //fetch all products
         fetchAllProducts();
         //fetch selected products
-        fetchMySelectedProducts();
         //send mySelectedProducts to second activity with explicit intent
+
+
+    }
+    public void onShowMyProductsClicked(View view){
+        Intent intent = new Intent(MainActivity.this, SelectedProductsActivity.class);
+        startActivity(intent);
     }
 
     private void fetchAllProducts(){
@@ -52,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         dataBaseHelper.addOne(product3);
         dataBaseHelper.addOne(product4);
         dataBaseHelper.addOne(product5);
-        ArrayList<ProductModel> allProducts = dataBaseHelper.getAllProducts();
+        allProducts = dataBaseHelper.getAllProducts();
         RecyclerAdapter adapter = new RecyclerAdapter(allProducts);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -60,12 +68,4 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView = findViewById(R.id.products_list);
     }
-
-    public ArrayList<ProductModel> fetchMySelectedProducts(){
-            //if true (checked), add to mySelectedProducts ArrayList
-        return mySelectedProducts;
-
-    }
-
-
 }
