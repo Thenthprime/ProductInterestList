@@ -18,12 +18,13 @@ public class SelectedProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selected_products_activity);
         recyclerView=findViewById(R.id.selected_products_list);
-        setAdapter();
-    }
-    private void setAdapter() {
+
+        //receive intent from main activity
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
         selectedProductsList = (ArrayList<ProductModel>) args.getSerializable("ARRAYLIST");
+
+        //send array recieved throug the intent to the recyclerview adapter
         RecyclerAdapter adapter = new RecyclerAdapter(selectedProductsList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);

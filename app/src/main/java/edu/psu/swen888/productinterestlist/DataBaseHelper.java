@@ -5,9 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
@@ -33,7 +31,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    //requried to add some initial data to the database
+    //method reequried to add some initial data to the empty database
     public boolean addOne(ProductModel productModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -49,6 +47,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    //this method will return all of the products in the database
 
     public ArrayList<ProductModel> getAllProducts() {
         ArrayList<ProductModel> returnList = new ArrayList();
@@ -67,7 +67,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String productSeller = cursor.getString(3);
                 String productPrice = cursor.getString(4);
 
-                ProductModel newProduct = new ProductModel(productID, productName, productDescription, productSeller, productPrice, 0, false);
+                ProductModel newProduct = new ProductModel(productID, productName, productDescription, productSeller, productPrice, 0);
                 returnList.add(newProduct);
             }
             while (cursor.moveToNext());

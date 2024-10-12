@@ -63,9 +63,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                 if(holder.checkBox.isChecked()) {
                     selectedProductsList.add(selectedItem);
                 }
-
-        }
-    });
+            }
+        });
     }
 
     @Override
