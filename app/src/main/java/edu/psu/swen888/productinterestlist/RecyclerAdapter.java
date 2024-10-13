@@ -56,7 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         holder.productDescription.setText(productsList.get(position).getDescription());
         holder.productSeller.setText(productsList.get(position).getSeller());
         holder.productPrice.setText(productsList.get(position).getPrice());
-        //holder.productImage.setImageResource(productsList.get(position).getImage());
+        holder.productImage.setImageResource(productsList.get(position).getImage());
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

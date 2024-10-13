@@ -15,6 +15,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_SELLER = "SELLER";
     public static final String COLUMN_PRICE = "PRICE";
     public static final String COLUMN_ID = "ID";
+    public static final String COLUMN_IMAGE = "IMAGE";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "product db", null, 1);
@@ -22,7 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + PRODUCT_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_PRODUCT_NAME + " TEXT, " + COLUMN_PRODUCT_DESCRIPTION + " TEXT, " + COLUMN_SELLER + " TEXT," + COLUMN_PRICE + " TEXT)";
+        String createTableStatement = "CREATE TABLE " + PRODUCT_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_PRODUCT_NAME + " TEXT, " + COLUMN_PRODUCT_DESCRIPTION + " TEXT, " + COLUMN_SELLER + " TEXT," + COLUMN_PRICE + " TEXT, " + COLUMN_IMAGE + " INTEGER)";
         db.execSQL(createTableStatement);
     }
 
@@ -31,7 +32,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    //method reequried to add some initial data to the empty database
+    //method to add data to the database
     public boolean addOne(ProductModel productModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -39,6 +40,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PRODUCT_DESCRIPTION, productModel.getDescription());
         cv.put(COLUMN_SELLER, productModel.getSeller());
         cv.put(COLUMN_PRICE, productModel.getPrice());
+        cv.put(COLUMN_IMAGE, productModel.getImage());
 
         long insert = db.insert(PRODUCT_TABLE, null, cv);
         if (insert == -1) {
@@ -66,8 +68,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String productDescription = cursor.getString(2);
                 String productSeller = cursor.getString(3);
                 String productPrice = cursor.getString(4);
+                int productImage = cursor.getInt(5);
 
-                ProductModel newProduct = new ProductModel(productID, productName, productDescription, productSeller, productPrice, 0);
+                ProductModel newProduct = new ProductModel(productID, productName, productDescription, productSeller, productPrice, productImage);
                 returnList.add(newProduct);
             }
             while (cursor.moveToNext());

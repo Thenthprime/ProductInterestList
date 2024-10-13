@@ -1,5 +1,7 @@
 package edu.psu.swen888.productinterestlist;
 
+import android.media.Image;
+
 import java.io.Serializable;
 
 public class ProductModel implements Serializable {
