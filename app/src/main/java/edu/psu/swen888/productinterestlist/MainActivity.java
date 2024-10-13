@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
         //hardcode prepopulated database only needs to be done once
 
-        ProductModel product1 = new ProductModel(1, "Classic Scissors", "Easy cuts", "Scissors Central", "$8.99", R.drawable.pid1);
+
+/*        ProductModel product1 = new ProductModel(1, "Classic Scissors", "Easy cuts", "Scissors Central", "$8.99", R.drawable.pid1);
         ProductModel product2 = new ProductModel(2, "Running Sneakers", "Run fast", "Shoes Central", "$38.99", R.drawable.pid2);
         ProductModel product3 = new ProductModel(3, "Office Chair", "Sit comfortably", "Chairs Central", "$45.99", R.drawable.pid3);
         ProductModel product4 = new ProductModel(4, "Backpack", "Sylish fit", "Backpacks Central", "$18.99", R.drawable.pid4);
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         dataBaseHelper.addOne(product2);
         dataBaseHelper.addOne(product3);
         dataBaseHelper.addOne(product4);
-        dataBaseHelper.addOne(product5);
+        dataBaseHelper.addOne(product5);*/
 
 
 
