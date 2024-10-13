@@ -25,7 +25,7 @@ public class SelectedProductsActivity extends AppCompatActivity {
         selectedProductsList = (ArrayList<ProductModel>) args.getSerializable("ARRAYLIST");
 
         //send array recieved throug the intent to the recyclerview adapter
-        RecyclerAdapter adapter = new RecyclerAdapter(selectedProductsList);
+        SelectedItemRecyclerAdapter adapter = new SelectedItemRecyclerAdapter(selectedProductsList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
