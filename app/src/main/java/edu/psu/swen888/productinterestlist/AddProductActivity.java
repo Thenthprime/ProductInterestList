@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,19 +30,22 @@ public class AddProductActivity extends AppCompatActivity {
         button_add_product.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                //convert text input to string
                 String stringPath = et_imagePath.getText().toString();
+                //get resource package associated with string
                 int imagePath = getResources().getIdentifier(stringPath, null, getPackageName());
                 ProductModel productModel = new ProductModel(-1, et_productName.getText().toString(), et_productDescription.getText().toString(), et_seller.getText().toString(), et_price.getText().toString(), imagePath);
                 DataBaseHelper dataBaseHelper = new DataBaseHelper(AddProductActivity.this);
                 dataBaseHelper.addOne(productModel);
                 ViewGroup group = (ViewGroup)findViewById(R.id.add_products_page);
+                Toast.makeText(AddProductActivity.this, "Product Added to the Database.", Toast.LENGTH_SHORT).show();
+                //clear the fields
                 for (int i = 0, count = group.getChildCount(); i < count; ++i) {
                     View view = group.getChildAt(i);
                     if (view instanceof EditText) {
                         ((EditText)view).setText("");
                     }
                 }
-
             }
         });
 
@@ -52,12 +54,7 @@ public class AddProductActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-
             }
         });
-
-
-
-
     }
 }

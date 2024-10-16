@@ -23,10 +23,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //create the "products" table
         String createTableStatement = "CREATE TABLE " + PRODUCT_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_PRODUCT_NAME + " TEXT, " + COLUMN_PRODUCT_DESCRIPTION + " TEXT, " + COLUMN_SELLER + " TEXT," + COLUMN_PRICE + " TEXT, " + COLUMN_IMAGE + " INTEGER)";
         db.execSQL(createTableStatement);
     }
 
+    //used if database were upgraded
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 

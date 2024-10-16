@@ -44,8 +44,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //if(calling method == Main activity){}
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item, parent, false);
         return new MyViewHolder(itemView);
+        //elseif(calling method == SelectedProductsList){}
     }
 
     @Override

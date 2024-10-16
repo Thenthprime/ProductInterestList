@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("BUNDLE", args);
             startActivity(intent);
         }
+
     }
 
     private void fetchAllProducts() {
